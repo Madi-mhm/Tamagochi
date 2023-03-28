@@ -1,0 +1,161 @@
+.gameSectionContainer{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../img/bg-1.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .gameSectionContents{
+        width: 70%;      
+        height: 100%;       
+
+        .barCounters{
+            display: flex;
+            flex-direction: column;   
+    
+            .barConuterElement{
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+    
+                .barCounterIcon{
+                    width: 45px;
+                    height: 40px;
+                }
+                .firstIcon{
+                    background-image: url(../../img/icon-blood.png);
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+                .secondIcon{
+                    background-image: url(../../img/icon-meat.png);
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+                .thirdIcon{
+                    background-image: url(../../img/icon-rabbit.png);
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+                .barCountersize{
+                    width: 100%;
+                    height: 25px;
+                    margin-left: 1rem;
+                    background-color: red;
+                    display: flex;
+                    align-items: center;
+                    justify-content: end;
+                    
+                    p{
+                        font-size: 12px;
+                        padding-right: 5px;
+                    }
+
+                    @media (min-width: 660px){
+                        width: 70%;
+                    }
+                    @media (min-width: 768px){
+                        width: 50%;
+                    }
+                }                
+            }  
+            @media (min-width: 768px){
+               margin: 2rem 0 0 2rem;
+                
+            }
+        }
+
+        .gameSectionImage{
+            width: 100%;
+            height: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .petImage{
+                width: 16rem;
+                height: 20rem;
+                background-image: url(../../img/Worf.png);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;        
+            }
+            @media (max-width: 375px){
+                .petImage{
+                    width: 12rem;
+                    height: 16rem;
+                }
+            }
+            @media (min-width: 768px){
+                justify-content: end;
+                align-items: unset;
+                margin-left: 10rem;
+                height: 8rem;   
+            }
+            @media (min-width:1024px){
+                .petImage{
+                    width: 20rem;
+                    height: 26rem;
+
+                }
+            }
+
+        }
+
+        .gameSectionButtons{
+            display: flex;
+            justify-content: space-around;
+
+            .gameSectionBtn{
+                width: 50px;
+                height: 50px;
+                background-color: rgba(255, 255, 255, 0.602);
+                border-radius: 5px;
+                cursor: pointer;
+                &:hover{
+                    background-color: rgba(250, 235, 215, 0.879);
+                }
+            }
+
+            .bloodButton{
+                background-image: url(../../img/icon-blood.png);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            .meatButton{
+                background-image: url(../../img/icon-meat.png);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            .rabbitButton{
+                background-image: url(../../img/icon-rabbit.png);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            @media (min-width: 768px){
+                width: 50%;
+                margin-left: 5rem;
+                
+            }
+          
+        }
+
+    }
+    @media (min-width: 768px){
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    }     
+}
