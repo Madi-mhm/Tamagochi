@@ -80,7 +80,7 @@
             align-items: center;
             justify-content: center;
 
-            .petImage{
+            .wolfImage{
                 width: 16rem;
                 height: 20rem;
                 background-image: url(../../img/Worf.png);
@@ -88,8 +88,20 @@
                 background-position: center;
                 background-repeat: no-repeat;        
             }
+            .dragonImage{
+                width: 16rem;
+                height: 20rem;
+                background-image: url(../../img/dragon.png);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;              
+            }
             @media (max-width: 375px){
-                .petImage{
+                .dragonImage{ 
+                    width: 12rem;
+                    height: 16rem;
+                }
+                .wolfImage{
                     width: 12rem;
                     height: 16rem;
                 }
@@ -101,10 +113,13 @@
                 height: 8rem;   
             }
             @media (min-width:1024px){
-                .petImage{
+                .dragonImage{
                     width: 20rem;
                     height: 26rem;
-
+                }
+                .wolfImage{
+                    width: 20rem;
+                    height: 26rem;
                 }
             }
 

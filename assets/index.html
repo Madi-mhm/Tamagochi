@@ -14,11 +14,15 @@
         <div class="wrapper">
             <div class="homePageContainer">
                 <h1>Welcome to the Game</h1>
-                <input type="text" placeholder="Pets Name...">
-                <input type="text" placeholder="Choose Pet...">
-                <button id="homePageStartButton">Start</button>
+                <small id="NameInputErrorMessage"></small>
+                <input type="text" id="petsNameInput" placeholder="Pets Name...">
+                <select name="petOptions" id="selectOption">
+                    <option value="Wolf">Wolf</option>
+                    <option value="Dragon">Dragon</option>
+                </select>
+                <button type="submit" id="homePageStartButton">Start</button>
             </div>
-            <div class="gameSectionContainer">
+            <div class="gameSectionContainer hide">
                 <div class="gameSectionContents">
                     <div class="barCounters">
                         <div class="barConuterElement">
@@ -41,7 +45,7 @@
                         </div>
                     </div>
                     <div class="gameSectionImage">
-                        <div class="petImage"></div>
+                        <div class="wolfImage petImage"></div>
                     </div>
                     <div class="gameSectionButtons">
                         <div class=" gameSectionBtn bloodButton"></div>
@@ -50,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="resultContainer">
+            <div class="resultContainer hide">
                 <div class="resultContainerContents">
                     <h1>Game Over!</h1>
                     <button>Replay!</button>
