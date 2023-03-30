@@ -12,8 +12,8 @@ const petsNameInput = document.getElementById('petsNameInput') as HTMLInputEleme
 const selectOption = document.getElementById('selectOption') as HTMLSelectElement;
 
 startButton?.addEventListener('click', () => {
-
-  if (petsNameInput.value === '') {
+    
+  if (petsNameInput.value === "" ) {
     const NameInputErrorMessage = document.getElementById('NameInputErrorMessage');
     if (NameInputErrorMessage) {
       NameInputErrorMessage.innerText = 'Please enter your name';
@@ -29,6 +29,8 @@ startButton?.addEventListener('click', () => {
 
       const dragonClass = new Dragon("People")
       dragonClass.changeImage()
+      dragonClass.dragonFoodButton()
+      dragonClass.dragonBarIcon()
       
     } else if (selectedOption.value === 'Wolf') {
       homePageContainer?.classList.add('hide');
@@ -36,6 +38,8 @@ startButton?.addEventListener('click', () => {
 
       const wolfImage = new Wolf("rabbit")
       wolfImage.changeImage()
+      wolfImage.wolfFoodButton()
+      wolfImage.wolfBarIcon()
       
     } 
 

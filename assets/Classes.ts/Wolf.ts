@@ -8,6 +8,16 @@ class Wolf extends Characters {
         imageSection?.classList.remove("dragonImage")
         imageSection?.classList.add("wolfImage")
     }
+    wolfFoodButton(){
+        const uniqueButton = document.getElementById("foodButton")
+        uniqueButton?.classList.remove("dragonFoodButtonImage")
+        uniqueButton?.classList.add("wolfFoodButtonImage")
+    }
+    wolfBarIcon(){
+        const barIcon = document.querySelector(".thirdIcon")
+        barIcon?.classList.remove("peopleIcon")
+        barIcon?.classList.add("rabbitIcon")
+    }
 }
 
 export default Wolf

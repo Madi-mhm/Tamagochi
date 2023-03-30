@@ -9,7 +9,17 @@ class Dragon extends Characters{
         imageSection?.classList.remove("wolfImage")
         imageSection?.classList.add("dragonImage")
     }
+    dragonFoodButton(){
+        const uniqueButton = document.getElementById("foodButton")
+        uniqueButton?.classList.remove("wolfFoodButtonImage")
+        uniqueButton?.classList.add("dragonFoodButtonImage")
+    }
+    dragonBarIcon(){
+        const barIcon = document.querySelector("thirdIcon")
+        barIcon?.classList.remove("rabbitIcon")
+        barIcon?.classList.add("peopleIcon")
 
+    }
 
 }
 
