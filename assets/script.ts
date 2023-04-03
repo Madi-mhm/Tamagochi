@@ -50,12 +50,13 @@ startButton?.addEventListener('click', () => {
 
 });
 
-// Functions for decreacing the values of the bars, every x seconds
+// First function for decreacing the values of the blood bar, every second + button for increase the bar value 
 let bloodBarValue: number = 100; 
 
 function bloodBarCountDown(){
   let firstInterval: number ;
   const bloodBar: HTMLElement | null = document.getElementById("bloodBar")
+  const bloodBarLevel : HTMLElement | null = document.getElementById("bloodBarLevel")
 
   firstInterval = setInterval(()=>{
   
@@ -67,13 +68,13 @@ function bloodBarCountDown(){
       bloodBarValue = bloodBarValue - 2 ; 
     }else if(bloodBarValue <= 0){
       clearInterval(firstInterval)
+      gameOverpage()
     }
 
     if(bloodBar){
       bloodBar.innerHTML = bloodBarValue.toString()
     }     
 
-    const bloodBarLevel : HTMLElement | null = document.getElementById("bloodBarLevel")
     if(bloodBarLevel){
       bloodBarLevel.style.width = `${bloodBarValue}%`
     }
@@ -90,18 +91,23 @@ function bloodBarCountDown(){
       if(bloodBar){
         bloodBar.innerHTML = bloodBarValue.toString()
       } 
+
+      if(bloodBarLevel){
+        bloodBarLevel.style.width = `${bloodBarValue}%`
+      }
     }
 }))
 
 }
 
-
+// Second function for decreacing the values of the meat bar, every second + button for increase the bar value 
 let meatBarValue: number = 100;
 
 function meatBarCountDown(){
 
   let secondInterval: number; 
   const meatBar: HTMLElement | null = document.getElementById("meatBar")
+  const meatBarLevel : HTMLElement | null = document.getElementById("meatBarLevel")
 
   secondInterval = setInterval(()=>{   
 
@@ -113,13 +119,13 @@ function meatBarCountDown(){
     meatBarValue = meatBarValue - 2 ; 
   }else if(meatBarValue <= 0){
     clearInterval(secondInterval)
+    gameOverpage()
   }
 
   if(meatBar){
     meatBar.innerHTML = meatBarValue.toString()
   }     
 
-  const meatBarLevel : HTMLElement | null = document.getElementById("meatBarLevel")
   if(meatBarLevel){
     meatBarLevel.style.width = `${meatBarValue}%`
   }
@@ -135,18 +141,22 @@ function meatBarCountDown(){
       if(meatBar){
       meatBar.innerHTML = meatBarValue.toString()
       } 
+      if(meatBarLevel){
+        meatBarLevel.style.width = `${meatBarValue}%`
+      }
     }
 }))
 
 }
 
-
+// Third function for decreacing the values of the food bar, every second + button for increase the bar value 
 let foodBarValue: number = 100;
 
 function foodBarCountDown(){
 
   let thirdInterval: number; 
   const foodBar: HTMLElement | null = document.getElementById("foodBar")
+  const foodBarLevel : HTMLElement | null = document.getElementById("foodBarLevel")
 
   thirdInterval = setInterval(()=>{   
 
@@ -158,13 +168,13 @@ function foodBarCountDown(){
     foodBarValue = foodBarValue - 2 ; 
   }else if(foodBarValue <= 0){
     clearInterval(thirdInterval)
+    gameOverpage()
   }
   
   if(foodBar){
     foodBar.innerHTML = foodBarValue.toString()
   }
 
-  const foodBarLevel : HTMLElement | null = document.getElementById("foodBarLevel")
   if(foodBarLevel){
     foodBarLevel.style.width = `${foodBarValue}%`
   }
@@ -180,12 +190,27 @@ function foodBarCountDown(){
       if(foodBar){
         foodBar.innerHTML = foodBarValue.toString()
       } 
+      if(foodBarLevel){
+        foodBarLevel.style.width = `${foodBarValue}%`
+      }
     }
 }))
 
 }
 
 
+// function for show the result page and hide the game section after losing
+const resultContainer:HTMLElement | null = document.querySelector(".resultContainer") 
+
+function gameOverpage(){
+  gameSectionContainer?.classList.add("hide")
+  resultContainer?.classList.remove("hide")
+}
 
 
+// replay button that refresh the page 
+const replayButton:HTMLElement | null = document.getElementById("replayButton")
+replayButton?.addEventListener("click", ()=>{
+  location.reload()
+})
 
