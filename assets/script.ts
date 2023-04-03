@@ -1,5 +1,6 @@
 import Wolf from './Classes.ts/Wolf';
 import Dragon from './Classes.ts/Dragon';
+import { createSemanticDiagnosticsBuilderProgram } from 'typescript';
 
 const homePageContainer: HTMLHRElement | null = document.querySelector('.homePageContainer');
 const gameSectionContainer: HTMLElement | null = document.querySelector('.gameSectionContainer');
@@ -41,89 +42,150 @@ startButton?.addEventListener('click', () => {
 
       
     } 
-    barsCountDown()
+    bloodBarCountDown()
+    meatBarCountDown()
+    foodBarCountDown()
+
   }
 
 });
 
-// A function for decreacing the values of the bars, every x seconds
-const barValues: NodeListOf<Element>  = document.querySelectorAll(".barValue") 
-const barColorInjection: HTMLCollectionOf<Element> = document.getElementsByClassName("barRedColor") 
-let barValuesInnerText: number = 100
+// Functions for decreacing the values of the bars, every x seconds
+let bloodBarValue: number = 100; 
 
-function barsCountDown (){
+function bloodBarCountDown(){
   let firstInterval: number ;
+  const bloodBar: HTMLElement | null = document.getElementById("bloodBar")
 
   firstInterval = setInterval(()=>{
-
-    if(barValuesInnerText <= 100 && barValuesInnerText >= 50){
-      barValuesInnerText -= 10 
-    }else if(barValuesInnerText <= 50 && barValuesInnerText >= 15){
-      barValuesInnerText -= 6 
-    }else if(barValuesInnerText <= 15 && barValuesInnerText >= 2){
-      barValuesInnerText -= 2 ; 
-    }else if(barValuesInnerText <= 0){
+  
+    if(bloodBarValue <= 100 && bloodBarValue >= 50){
+      bloodBarValue = bloodBarValue - 10 
+    }else if(bloodBarValue <= 50 && bloodBarValue >= 15){
+      bloodBarValue = bloodBarValue - 6 
+    }else if(bloodBarValue <= 15 && bloodBarValue >= 2){
+      bloodBarValue = bloodBarValue - 2 ; 
+    }else if(bloodBarValue <= 0){
       clearInterval(firstInterval)
     }
 
-    for(let i= 0; i < barValues.length; i++){
-      barValues[i].innerHTML = barValuesInnerText.toString()
-    }      
+    if(bloodBar){
+      bloodBar.innerHTML = bloodBarValue.toString()
+    }     
 
-    for(let i = 0; i < barColorInjection.length ; i++){
-      const element: HTMLElement | null = barColorInjection[i] as HTMLElement
-      element.style.width = `${barValuesInnerText}%`
+    const bloodBarLevel : HTMLElement | null = document.getElementById("bloodBarLevel")
+    if(bloodBarLevel){
+      bloodBarLevel.style.width = `${bloodBarValue}%`
     }
-  },1000)  
+
+
+  },1000)
+
+  const bloodButton = document.querySelector(".bloodButton")
+
+  bloodButton?.addEventListener("click", (()=>{
+    if(bloodBarValue <= 90){
+      bloodBarValue = bloodBarValue + 10 
+
+      if(bloodBar){
+        bloodBar.innerHTML = bloodBarValue.toString()
+      } 
+    }
+}))
+
 }
 
-// The buttons for increase the values of bars
-const barCounterIcon: HTMLCollectionOf<Element> = document.getElementsByClassName("gameSectionButtons")
 
-for(let i = 0; i < barCounterIcon.length ; i++ ){
+let meatBarValue: number = 100;
 
-  const barButtons = barCounterIcon[i] as HTMLElement
+function meatBarCountDown(){
+
+  let secondInterval: number; 
+  const meatBar: HTMLElement | null = document.getElementById("meatBar")
+
+  secondInterval = setInterval(()=>{   
+
+  if(meatBarValue <= 100 && meatBarValue >= 50){
+    meatBarValue = meatBarValue - 10 
+  }else if(meatBarValue <= 50 && meatBarValue >= 15){
+    meatBarValue = meatBarValue - 6 
+  }else if(meatBarValue <= 15 && meatBarValue >= 2){
+    meatBarValue = meatBarValue - 2 ; 
+  }else if(meatBarValue <= 0){
+    clearInterval(secondInterval)
+  }
+
+  if(meatBar){
+    meatBar.innerHTML = meatBarValue.toString()
+  }     
+
+  const meatBarLevel : HTMLElement | null = document.getElementById("meatBarLevel")
+  if(meatBarLevel){
+    meatBarLevel.style.width = `${meatBarValue}%`
+  }
+
+
+  },1000)
+  const meatButton = document.querySelector(".meatButton")
+
+  meatButton?.addEventListener("click", (()=>{
+    if(meatBarValue <= 90){
+      meatBarValue = meatBarValue + 10 
+
+      if(meatBar){
+      meatBar.innerHTML = meatBarValue.toString()
+      } 
+    }
+}))
+
+}
+
+
+let foodBarValue: number = 100;
+
+function foodBarCountDown(){
+
+  let thirdInterval: number; 
+  const foodBar: HTMLElement | null = document.getElementById("foodBar")
+
+  thirdInterval = setInterval(()=>{   
+
+  if(foodBarValue <= 100 && foodBarValue >= 50){
+    foodBarValue = foodBarValue - 10 
+  }else if(foodBarValue <= 50 && foodBarValue >= 15){
+    foodBarValue = foodBarValue - 6 
+  }else if(foodBarValue <= 15 && foodBarValue >= 2){
+    foodBarValue = foodBarValue - 2 ; 
+  }else if(foodBarValue <= 0){
+    clearInterval(thirdInterval)
+  }
   
-  barButtons.addEventListener("click", (e : Event)=> {
+  if(foodBar){
+    foodBar.innerHTML = foodBarValue.toString()
+  }
 
-    const clickedButton = e.target as HTMLElement  
-   
-    if(clickedButton.classList.contains("bloodButton")){
-      const bloodBar: HTMLElement | null = document.getElementById("bloodBar")
+  const foodBarLevel : HTMLElement | null = document.getElementById("foodBarLevel")
+  if(foodBarLevel){
+    foodBarLevel.style.width = `${foodBarValue}%`
+  }
 
-      // let oldBarValue: string | undefined = bloodBar?.innerText 
-      // let newBarValue: number = Number(oldBarValue)
+  },1000)
 
-      // newBarValue += 10 ;
-      // if(bloodBar){
-      //   bloodBar.innerText = String(newBarValue)
-      // }
+  const foodButton = document.querySelector(".foodButton")
 
-      
-      
-      console.log("blood") 
-    }else if(clickedButton.classList.contains("meatButton")){
-      console.log("meat")
-    }else if(clickedButton.classList.contains("foodButton")){
-      console.log("food")
+  foodButton?.addEventListener("click", (()=>{
+    if(foodBarValue <= 90){
+      foodBarValue = foodBarValue + 10 
+
+      if(foodBar){
+        foodBar.innerHTML = foodBarValue.toString()
+      } 
     }
-  })
+}))
 
 }
-// function increaseBarCounterByButton(){
-
-//   if(barValuesInnerText <= 90 && barValuesInnerText >= 0){
-//     barValuesInnerText += 10;
-
-//     for(let i = 0 ; i < barValues.length ; i++){
-//       barValues[i].innerHTML = barValuesInnerText.toString()
-//     }
-//   }
-// }
-    const meatBarLevel:HTMLElement | null = document.getElementById("meatBarLevel")
-    const foodBarLevel:HTMLElement | null = document.getElementById("foodBarLevel")
 
 
 
-// const barConuterElements = document.querySelectorAll(".barConuterElement")
+
 
