@@ -72,22 +72,23 @@
                     }
                 }   
                 #bloodBarLevel{
-                    width: 70%;
+                    
                     height: 100%;
                     background-color: red;
                 }     
                 #meatBarLevel{
-                    width: 80%;
+                    
                     height: 100%;
                     background-color: red;
                 }  
                 #foodBarLevel{
-                    width: 90%;
+                    
                     height: 100%;
                     background-color: red;
                 }
                 .procents{ 
                     position: absolute;
+                    color: white;
                 }                       
             }  
 

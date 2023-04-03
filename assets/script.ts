@@ -4,9 +4,6 @@ import Dragon from './Classes.ts/Dragon';
 const homePageContainer: HTMLHRElement | null = document.querySelector('.homePageContainer');
 const gameSectionContainer: HTMLElement | null = document.querySelector('.gameSectionContainer');
 
-const resultContainer = document.querySelector('.resultContainer');
-
-
 // Home Page start button for starting the game
 const startButton: HTMLElement | null = document.getElementById('homePageStartButton');
 const petsNameInput: HTMLInputElement = document.getElementById('petsNameInput') as HTMLInputElement;
@@ -49,36 +46,82 @@ startButton?.addEventListener('click', () => {
 
 });
 
-
-// diminue de 10% entre 50% et 100% de point de vie
-// diminue de 6% entre 15% et 50% de point de vie
-// diminue de 2% entre 0% et 15% de point de vie
-// L’utilisateur peut alimenter les jauges à l’aide d’un bouton qui augmente la jauge de 10%, la jauge ne peut pas dépasser les 100%.
-
-// A function for decreacing the value of the bars every x minutes
+// A function for decreacing the values of the bars, every x seconds
 const barValues: NodeListOf<Element>  = document.querySelectorAll(".barValue") 
+const barColorInjection: HTMLCollectionOf<Element> = document.getElementsByClassName("barRedColor") 
+let barValuesInnerText: number = 100
 
 function barsCountDown (){
-  let barValuesInnerText: number = 100
+  let firstInterval: number ;
 
-  // First Interval timer for decreasing down to 50% by 10% each 2sec
-  let firstInterval: number ; 
-  if(barValuesInnerText <= 100 && barValuesInnerText >= 50){
-    firstInterval = setInterval(()=>{
-      barValuesInnerText -= 10 ; 
-      for(let i= 0; i < barValues.length; i++){
-        barValues[i].innerHTML = barValuesInnerText.toString()      
-      } 
-      if (barValuesInnerText === 50) {
-        clearInterval(firstInterval);
-      }
-    },1000)
-  }
+  firstInterval = setInterval(()=>{
 
+    if(barValuesInnerText <= 100 && barValuesInnerText >= 50){
+      barValuesInnerText -= 10 
+    }else if(barValuesInnerText <= 50 && barValuesInnerText >= 15){
+      barValuesInnerText -= 6 
+    }else if(barValuesInnerText <= 15 && barValuesInnerText >= 2){
+      barValuesInnerText -= 2 ; 
+    }else if(barValuesInnerText <= 0){
+      clearInterval(firstInterval)
+    }
+
+    for(let i= 0; i < barValues.length; i++){
+      barValues[i].innerHTML = barValuesInnerText.toString()
+    }      
+
+    for(let i = 0; i < barColorInjection.length ; i++){
+      const element: HTMLElement | null = barColorInjection[i] as HTMLElement
+      element.style.width = `${barValuesInnerText}%`
+    }
+  },1000)  
 }
 
+// The buttons for increase the values of bars
+const barCounterIcon: HTMLCollectionOf<Element> = document.getElementsByClassName("gameSectionButtons")
 
+for(let i = 0; i < barCounterIcon.length ; i++ ){
 
+  const barButtons = barCounterIcon[i] as HTMLElement
+  
+  barButtons.addEventListener("click", (e : Event)=> {
+
+    const clickedButton = e.target as HTMLElement  
+   
+    if(clickedButton.classList.contains("bloodButton")){
+      const bloodBar: HTMLElement | null = document.getElementById("bloodBar")
+
+      // let oldBarValue: string | undefined = bloodBar?.innerText 
+      // let newBarValue: number = Number(oldBarValue)
+
+      // newBarValue += 10 ;
+      // if(bloodBar){
+      //   bloodBar.innerText = String(newBarValue)
+      // }
+
+      
+      
+      console.log("blood") 
+    }else if(clickedButton.classList.contains("meatButton")){
+      console.log("meat")
+    }else if(clickedButton.classList.contains("foodButton")){
+      console.log("food")
+    }
+  })
+
+}
+// function increaseBarCounterByButton(){
+
+//   if(barValuesInnerText <= 90 && barValuesInnerText >= 0){
+//     barValuesInnerText += 10;
+
+//     for(let i = 0 ; i < barValues.length ; i++){
+//       barValues[i].innerHTML = barValuesInnerText.toString()
+//     }
+//   }
+// }
+    const meatBarLevel:HTMLElement | null = document.getElementById("meatBarLevel")
+    const foodBarLevel:HTMLElement | null = document.getElementById("foodBarLevel")
 
 
 
