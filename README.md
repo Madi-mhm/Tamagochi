@@ -1,4 +1,4 @@
-#Tamagochi
+# Tamagochi
 
 - The site meets the specifications
 - Expected functionality does not produce errors
